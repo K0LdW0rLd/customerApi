@@ -3,7 +3,9 @@ const express = require("express");
 const app = express();
 const CustomerRoutes = require("./api/routes/customerRoutes");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use("/", CustomerRoutes);
 app.route("/").get(function (req, res) {

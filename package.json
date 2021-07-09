@@ -19,12 +19,13 @@
   "homepage": "https://github.com/K0LdW0rLd/customerApi#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.13.2",
     "nodemon": "^2.0.10"
   },
-    "engines": {
+  "engines": {
     "node": "12.16.0"
   }
 }
