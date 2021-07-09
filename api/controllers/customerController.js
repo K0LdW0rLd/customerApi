@@ -1,12 +1,21 @@
 const Customer = require("../models/customerModel");
+const aqp = require("api-query-params");
 
-exports.listCustomers = function (req, res) {
-  Customer.find({}, (err, data) => {
-    if (err) {
-      return res.json({ Error: err });
-    }
-    return res.json(data);
-  });
+exports.listCustomers = function (req, res, next) {
+  const { filter, skip, limit, sort, projection, population } = aqp(req.query);
+  Customer.find(filter)
+    .skip(skip)
+    .limit(limit)
+    .sort(sort)
+    .select(projection)
+    .populate(population)
+    .exec((err, customers) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.send(customers);
+    });
 };
 
 exports.createCustomer = function (req, res) {
